@@ -26,7 +26,7 @@ public class IntegerToken {
 
     @Override
     public String toString() {
-        return String.format("Lexema: '%s', encontrado en la linea: %i y columna %i",
+        return String.format("Lexema: '%s', encontrado en la linea: %d y columna %d",
                 this.lexem, this.line, this.col);
     }
 

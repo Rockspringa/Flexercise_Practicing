@@ -34,19 +34,26 @@ public class InfoManager {
             }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(),
-                    "Error during analisis", JOptionPane.ERROR_MESSAGE);
+                    "Error during analysis", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void setResultsToList(LexicalAnalizer lex) {
         DefaultListModel<Object> model = new DefaultListModel<>();
 
-        model.addElement("Palabras de una vocal: " + lex.getOneVocal());
-        model.addElement("Palabras de dos vocales: " + lex.getTwoVocal());
-        model.addElement("Palabras de tres vocales: " + lex.getThreeVocal());
-        model.addElement("Palabras de cuatro vocales: " + lex.getFourVocal());
-        model.addElement("Palabras de cinco vocales: " + lex.getFiveVocal());
-        model.addElement("Palabras de mas vocales: " + lex.getSoMuchVocal());
+        String[] ins = { "una", "dos", "tres", "cuatro", "cinco", "mas" };
+        int[] data = { lex.getOneVocal(), lex.getTwoVocal(), lex.getThreeVocal(),
+                lex.getFourVocal(), lex.getFiveVocal(), lex.getSoMuchVocal() };
+
+        for (int i = 0; i < ins.length; i++) {
+            if (data[i] != 0) {
+                if (ins[i].equals("una")) {
+                    model.addElement("Palabras de " + ins[i] + " vocal: " + data[i]);
+                } else {
+                    model.addElement("Palabras de " + ins[i] + " vocales: " + data[i]);
+                }
+            }
+        }
 
         for (IntegerToken token : lex.getIntegers()) {
             model.addElement(token);
