@@ -42,8 +42,8 @@ public class InfoManager {
         DefaultListModel<Object> model = new DefaultListModel<>();
 
         String[] ins = { "una", "dos", "tres", "cuatro", "cinco", "mas" };
-        int[] data = { lex.getOneVocal(), lex.getTwoVocal(), lex.getThreeVocal(),
-                lex.getFourVocal(), lex.getFiveVocal(), lex.getSoMuchVocal() };
+        int[] data = { lex.getOneVowel(), lex.getTwoVowel(), lex.getThreeVowel(),
+                lex.getFourVowel(), lex.getFiveVowel(), lex.getSoMuchVowel() };
 
         for (int i = 0; i < ins.length; i++) {
             if (data[i] != 0) {

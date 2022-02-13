@@ -13,18 +13,18 @@ import java.util.ArrayList;
 %int
 
 %{
-  private int oneVocal = 0;
-  private int twoVocal = 0;
-  private int threeVocal = 0;
-  private int fourVocal = 0;
-  private int fiveVocal = 0;
-  private int soMuchVocals = 0;
-  private int numOfVocals = 0;
+  private int oneVowel = 0;
+  private int twoVowel = 0;
+  private int threeVowel = 0;
+  private int fourVowel = 0;
+  private int fiveVowel = 0;
+  private int soMuchVowels = 0;
+  private int numOfVowels = 0;
 
   private List<IntegerToken> ints = new ArrayList<>();
 
-  private void addNumOfVocals() {
-    this.numOfVocals++;
+  private void addNumOfVowels() {
+    this.numOfVowels++;
   }
 
   private void addIntegers(int line, int col, String lexem) {
@@ -32,64 +32,64 @@ import java.util.ArrayList;
   }
 
   private void addWordToCounters() {
-    switch (this.numOfVocals) {
+    switch (this.numOfVowels) {
       case 0:
         /* do nothing */
         break;
       case 1:
-        this.oneVocal++;
+        this.oneVowel++;
         break;
       case 2:
-        this.twoVocal++;
+        this.twoVowel++;
         break;
       case 3:
-        this.threeVocal++;
+        this.threeVowel++;
         break;
       case 4:
-        this.fourVocal++;
+        this.fourVowel++;
         break;
       case 5:
-        this.fiveVocal++;
+        this.fiveVowel++;
         break;
       default:
-        this.soMuchVocals++;
+        this.soMuchVowels++;
     }
 
-    this.numOfVocals = 0;
+    this.numOfVowels = 0;
   }
 
   public IntegerToken[] getIntegers() {
     return this.ints.toArray(new IntegerToken[0]);
   }
 
-  public int getOneVocal() {
-    return this.oneVocal;
+  public int getOneVowel() {
+    return this.oneVowel;
   }
 
-  public int getTwoVocal() {
-    return this.twoVocal;
+  public int getTwoVowel() {
+    return this.twoVowel;
   }
 
-  public int getThreeVocal() {
-    return this.threeVocal;
+  public int getThreeVowel() {
+    return this.threeVowel;
   }
 
-  public int getFourVocal() {
-    return this.fourVocal;
+  public int getFourVowel() {
+    return this.fourVowel;
   }
 
-  public int getFiveVocal() {
-    return this.fiveVocal;
+  public int getFiveVowel() {
+    return this.fiveVowel;
   }
 
-  public int getSoMuchVocal() {
-    return this.soMuchVocals;
+  public int getSoMuchVowel() {
+    return this.soMuchVowels;
   }
 
 %}
 
 %eof{
-  if (this.numOfVocals != 0)
+  if (this.numOfVowels != 0)
     addWordToCounters();
 %eof}
 
@@ -97,5 +97,5 @@ import java.util.ArrayList;
 
 [ \n\t\r]+    { addWordToCounters(); }
 [0-9]+        { addIntegers(yyline, yycolumn, yytext()); }
-[aeiouAEIOU]  { addNumOfVocals(); }
+[aeiouAEIOU]  { addNumOfVowels(); }
 [^]           { /* Without action. */ }
