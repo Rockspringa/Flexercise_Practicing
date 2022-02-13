@@ -65,8 +65,10 @@ public class LexicalAnalizer {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\40\0\1\1\17\0\12\2\47\0\1\3\3\0\1\3"+
-    "\3\0\1\3\5\0\1\3\5\0\1\3\u018a\0";
+    "\11\0\2\1\2\0\1\1\22\0\1\1\17\0\12\2"+
+    "\7\0\1\3\3\0\1\3\3\0\1\3\5\0\1\3"+
+    "\5\0\1\3\13\0\1\3\3\0\1\3\3\0\1\3"+
+    "\5\0\1\3\5\0\1\3\u018a\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];

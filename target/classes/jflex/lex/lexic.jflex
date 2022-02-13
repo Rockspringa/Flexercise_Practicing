@@ -95,7 +95,7 @@ import java.util.ArrayList;
 
 %%
 
-[ ]+        { addWordToCounters(); }
-[0-9]+       { addIntegers(yyline, yycolumn, yytext()); }
-[aeiou]     { addNumOfVocals(); }
-[^]         { /* Without action. */ }
+[ \n\t\r]+    { addWordToCounters(); }
+[0-9]+        { addIntegers(yyline, yycolumn, yytext()); }
+[aeiouAEIOU]  { addNumOfVocals(); }
+[^]           { /* Without action. */ }
