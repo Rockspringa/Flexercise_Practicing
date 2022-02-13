@@ -12,9 +12,7 @@ public class Main {
             @Override
             public void run() {
                 EntryPoint panel = new EntryPoint();
-                panel.setBounds(0, 0, 500, 500);
-                panel.setVisible(true);
-                panel.setLocationRelativeTo(null);
+                panel.launch();
             }
 
         });

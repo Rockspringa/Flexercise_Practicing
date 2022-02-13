@@ -26,7 +26,7 @@ public interface Theme {
         UIManager.put("ScrollBar.width", 12);
 
         UIManager.put("Panel.background", Color.LIGHT_GRAY);
-        UIManager.put("Frame.background", Color.LIGHT_GRAY);
+        UIManager.put("Panel.border", BorderFactory.createLineBorder(Color.BLACK));
 
         UIManager.put("TextPane.background", Color.LIGHT_GRAY);
         UIManager.put("TextPane.foreground", Color.DARK_GRAY);
@@ -37,11 +37,13 @@ public interface Theme {
         UIManager.put("List.background", Color.LIGHT_GRAY);
         UIManager.put("List.foreground", Color.DARK_GRAY);
 
-        UIManager.put("Button.background", Color.DARK_GRAY);
-        UIManager.put("Button.foreground", Color.WHITE);
+        UIManager.put("Button.background", Color.LIGHT_GRAY);
+        UIManager.put("Button.foreground", Color.DARK_GRAY);
         UIManager.put("Button.select", Color.BLACK);
-        UIManager.put("Button.focus", Color.LIGHT_GRAY);
-        UIManager.put("Button.border", BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        UIManager.put("Button.focus", Color.DARK_GRAY);
+        UIManager.put("Button.border", BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.DARK_GRAY, 2),
+                BorderFactory.createEmptyBorder(5, 10, 5, 10)));
     }
 
 }
