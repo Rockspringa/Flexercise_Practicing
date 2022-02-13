@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>edu.exercises</groupId>
+    <artifactId>JflexExercise</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+    <dependency>
+        <groupId>de.jflex</groupId>
+        <artifactId>maven-jflex-plugin</artifactId>
+        <version>1.8.2</version>
+    </dependency>
+    <!-- <build>
+        <plugins>
+            <plugin>
+                <groupId>de.jflex</groupId>
+                <artifactId>jflex-maven-plugin</artifactId>
+                <version>1.8.2</version>
+                <executions>
+                    <execution>
+                        <?m2e execute onConfiguration,onIncremental?>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>src/main/java/edu/exercises/</outputDirectory>
+                            <lexDefinitions>
+                                <lexDefinition>src/main/java/jflex</lexDefinition>
+                            </lexDefinitions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build> -->
+</project>
