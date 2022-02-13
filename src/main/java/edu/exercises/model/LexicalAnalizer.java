@@ -4,6 +4,9 @@
 
 package edu.exercises.model;
 
+import java.util.List;
+import java.util.ArrayList;
+
 
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
@@ -62,8 +65,8 @@ public class LexicalAnalizer {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\40\0\1\1\100\0\1\2\3\0\1\2\3\0\1\2"+
-    "\5\0\1\2\5\0\1\2\u018a\0";
+    "\40\0\1\1\17\0\12\2\47\0\1\3\3\0\1\3"+
+    "\3\0\1\3\5\0\1\3\5\0\1\3\u018a\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -90,10 +93,10 @@ public class LexicalAnalizer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3";
+    "\1\0\1\1\1\2\1\3\1\4";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[4];
+    int [] result = new int[5];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -118,10 +121,10 @@ public class LexicalAnalizer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\3\0\6\0\3";
+    "\0\0\0\4\0\10\0\14\0\4";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[4];
+    int [] result = new int[5];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -144,10 +147,11 @@ public class LexicalAnalizer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\4\0\1\3\1\0";
+    "\1\2\1\3\1\4\1\5\5\0\1\3\4\0\1\4"+
+    "\1\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[9];
+    int [] result = new int[16];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -190,10 +194,10 @@ public class LexicalAnalizer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\1\11";
+    "\1\0\1\11\2\1\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[4];
+    int [] result = new int[5];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -270,65 +274,78 @@ public class LexicalAnalizer {
   private boolean zzEOFDone;
 
   /* user code: */
-    private int oneVocal = 0;
-    private int twoVocal = 0;
-    private int threeVocal = 0;
-    private int fourVocal = 0;
-    private int fiveVocal = 0;
-    private int soMuchVocals = 0;
-    private int numOfVocals = 0;
+  private int oneVocal = 0;
+  private int twoVocal = 0;
+  private int threeVocal = 0;
+  private int fourVocal = 0;
+  private int fiveVocal = 0;
+  private int soMuchVocals = 0;
+  private int numOfVocals = 0;
 
-    private void addNumOfVocals() {
-        this.numOfVocals++;
+  private List<IntegerToken> ints = new ArrayList<>();
+
+  private void addNumOfVocals() {
+    this.numOfVocals++;
+  }
+
+  private void addIntegers(int line, int col, String lexem) {
+    ints.add(new IntegerToken(line, col, Integer.parseInt(lexem)));
+  }
+
+  private void addWordToCounters() {
+    switch (this.numOfVocals) {
+      case 0:
+        /* do nothing */
+        break;
+      case 1:
+        this.oneVocal++;
+        break;
+      case 2:
+        this.twoVocal++;
+        break;
+      case 3:
+        this.threeVocal++;
+        break;
+      case 4:
+        this.fourVocal++;
+        break;
+      case 5:
+        this.fiveVocal++;
+        break;
+      default:
+        this.soMuchVocals++;
     }
 
-    private void addWordToCounters() {
-        switch (this.numOfVocals) {
-            case 1:
-                this.oneVocal++;
-                break;
-            case 2:
-                this.twoVocal++;
-                break;
-            case 3:
-                this.threeVocal++;
-                break;
-            case 4:
-                this.fourVocal++;
-                break;
-            case 5:
-                this.fiveVocal++;
-                break;
-            default:
-                this.soMuchVocals++;
-        }
+    this.numOfVocals = 0;
+  }
 
-        this.numOfVocals = 0;
-    }
+  public IntegerToken[] getIntegers() {
+    return this.ints.toArray(new IntegerToken[0]);
+  }
 
-    public int getOneVocal() {
-      return this.oneVocal;
-    }
+  public int getOneVocal() {
+    return this.oneVocal;
+  }
 
-    public int getTwoVocal() {
-      return this.twoVocal;
-    }
+  public int getTwoVocal() {
+    return this.twoVocal;
+  }
 
-    public int getThreeVocal() {
-      return this.threeVocal;
-    }
+  public int getThreeVocal() {
+    return this.threeVocal;
+  }
 
-    public int getFourVocal() {
-      return this.fourVocal;
-    }
+  public int getFourVocal() {
+    return this.fourVocal;
+  }
 
-    public int getFiveVocal() {
-      return this.fiveVocal;
-    }
+  public int getFiveVocal() {
+    return this.fiveVocal;
+  }
 
-    public int getSoMuchVocal() {
-      return this.soMuchVocals;
-    }
+  public int getSoMuchVocal() {
+    return this.soMuchVocals;
+  }
 
 
 
@@ -583,8 +600,8 @@ public class LexicalAnalizer {
     if (!zzEOFDone) {
       zzEOFDone = true;
     
-    if (this.numOfVocals != 0)
-        addWordToCounters();
+  if (this.numOfVocals != 0)
+    addWordToCounters();
     }
   }
 
@@ -743,17 +760,22 @@ public class LexicalAnalizer {
             { /* Without action. */
             }
             // fall through
-          case 4: break;
+          case 5: break;
           case 2:
             { addWordToCounters();
             }
             // fall through
-          case 5: break;
+          case 6: break;
           case 3:
+            { addIntegers(yyline, yycolumn, yytext());
+            }
+            // fall through
+          case 7: break;
+          case 4:
             { addNumOfVocals();
             }
             // fall through
-          case 6: break;
+          case 8: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
